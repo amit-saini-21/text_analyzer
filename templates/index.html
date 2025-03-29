@@ -11,13 +11,15 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc, #ff69b4);
+            background: linear-gradient(135deg, #e2104f, #781bc5, #e7318c);
             height: 110vh;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0;
             background-attachment: fixed;
+            animation: gradientAnimation 5s ease infinite;
+            background-size: 200% 200%;
         }
 
         .container {
@@ -96,6 +98,86 @@
             background: linear-gradient(135deg, #2575fc, #ff69b4);
             transform: scale(1.05);
         }
+    @media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+    textarea {
+        height: 100px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+/* मध्यम आकार के उपकरणों के लिए (टैबलेट) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        width: 70%;
+    }
+    textarea {
+        height: 120px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    button {
+        padding: 11px 18px;
+        font-size: 15px;
+    }
+}
+
+/* बड़े उपकरणों के लिए (डेस्कटॉप) */
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        width: 50%;
+    }
+    textarea {
+        height: 130px;
+    }
+    h1 {
+        font-size: 32px;
+    }
+    h3 {
+        font-size: 22px;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 30%;
+    }
+    50% {
+        background-position: 100% 70%;
+    }
+    100% {
+        background-position: 0% 60%;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -108,7 +190,7 @@
             {% if error %}
             <h1 style="color: red;">{{error}}</h1>
             {% endif %}
-            <textarea name="text" placeholder="Type or Copy/Paste Your Content Here"></textarea>
+            <textarea name="text" placeholder="Type or Copy/Paste Your Content"></textarea>
 
             <table>
                 <tr>
