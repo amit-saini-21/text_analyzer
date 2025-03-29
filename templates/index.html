@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer</title>
+
+    <!-- Internal CSS -->
+    <style>
+        /* Gradient Background */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc, #ff69b4);
+            height: 110vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 50%; /* Thoda chota kar diya */
+        }
+
+        h1, h3 {
+            color: white;
+        }
+
+        /* Textarea Styling */
+        textarea {
+            width: 95%;
+            height: 130px;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #222; /* Dark color for better readability */
+            outline: none;
+            resize: none;
+            backdrop-filter: blur(5px);
+            margin-bottom: 15px; /* Space diya niche */
+        }
+        
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin-top: 8px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        td {
+            padding: 12px;
+            text-align: left;
+            color: #e0167b; /* Better contrast */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: background 0.3s ease-in-out;
+        }
+
+        td:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: #6611ee;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Button Styling */
+        button {
+            background: linear-gradient(135deg, #ff69b4, #2575fc);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+            margin-top: 15px; /* Table aur button ke beech space */
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2575fc, #ff69b4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form action="/analyze" method="get">
+           <marquee> <h1> Welcome to Text Analyzer</h1></marquee>
+            <h3>Enter your text below</h3>
+            
+            {% if error %}
+            <h1 style="color: red;">{{error}}</h1>
+            {% endif %}
+            <textarea name="text" placeholder="Type or Copy/Paste Your Content Here"></textarea>
+
+            <table>
+                <tr>
+                    <td><input type="checkbox" name="word_count"> Word Count</td>
+                    <td><input type="checkbox" name="char_count"> Char Count</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="longest_word"> Longest Word</td>
+                    <td><input type="checkbox" name="vowels_count"> Vowels Count</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="capitalize"> Capitalize</td>
+                    <td><input type="checkbox" name="remove_punc"> Remove Punctuation</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="sentence_count"> Sentence Count</td>
+                    <td><input type="checkbox" name="frequent_word"> Most Frequent Word</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="remove_space"> Remove Extra Spaces</td>
+                    <td><input type="checkbox" name="complexity_score"> Complexity Score</td>
+                </tr>
+            </table>
+
+            <button type="submit">Analyze Text</button>
+        </form>
+    </div>
+
+</body>
+</html>

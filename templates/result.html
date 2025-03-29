@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   <style>
+    /* Full Page Gradient Background (Fixed on Scroll) */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #6a11cb, #2575fc, #ff69b4);
+    min-height: 100vh;  /* Ensure full viewport height */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Proper scroll behavior */
+}
+
+/* Background Fix: Keep Gradient Fixed */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc, #ff69b4);
+    z-index: -1;
+}
+
+/* Main Container (Fix Overflow) */
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;  /* Fix Overflow Issue */
+    overflow: hidden;
+}
+
+/* Card Styling */
+.card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    color: #222;
+    backdrop-filter: blur(5px);
+}
+
+/* Card Header */
+.card-header {
+    font-weight: bold;
+    background: linear-gradient(135deg, #ff69b4, #2575fc);
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Table Styling */
+.table {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    color: #e0167b;
+}
+
+th {
+    background-color: #343a40;
+    color: white;
+}
+
+/* Button Styling */
+.btn {
+    background: linear-gradient(135deg, #ff69b4, #2575fc);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    margin: 10px;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #2575fc, #ff69b4);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    .btn {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+   </style>
+</head>
+<body>
+
+<!-- Main Container -->
+<div class="container">
+    <h2 style="color: white;">Text Analysis Result</h2>
+
+    {% for key, value in dic.items %}
+        <div class="card">
+            <div class="card-header">{{ key|title }}</div>
+            <div class="card-body">
+                {% if value is mapping %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sub_key, sub_value in value.items %}
+                                <tr>
+                                    <td>{{ sub_key }}</td>
+                                    <td>{{ sub_value }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>{{ value }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- Buttons -->
+    <div class="text-center">
+        <a href="{% url 'home' %}" class="btn">Analyze Another Text</a>
+        <a href="{% url 'download_pdf' %}?text={{ text }}" class="btn">Download PDF</a>
+    </div>
+</div>
+
+</body>
+</html>
