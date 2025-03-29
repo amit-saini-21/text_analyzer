@@ -17,7 +17,7 @@ DATABASES = {
     }
 }
 # Debug mode (False for production)
-DEBUG = True
+DEBUG = False
 
 # Allowed Hosts
 ALLOWED_HOSTS = ['text-analyzer-n0of.onrender.com'] 
