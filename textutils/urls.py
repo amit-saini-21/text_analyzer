@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path
 from textutils import views
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('',views.home,name="home"),
     path('analyze/',views.analyze,name="analyze"),
     path('download_pdf/', views.download_pdf, name='download_pdf')
